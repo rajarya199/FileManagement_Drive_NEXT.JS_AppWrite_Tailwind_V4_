@@ -1,8 +1,10 @@
 import React from 'react'
-
+import AuthForm from '@/components/auth/AuthForm'
 const page = () => {
   return (
-    <div className='bg-red text-6xl'>page....................</div>
+    <>
+    <AuthForm type="login"/>
+    </>
   )
 }
 

@@ -1,11 +1,12 @@
-"use client"
-import React,{useState} from 'react'
-import {z} from 'zod'
-import {useForm} from 'react-hook-form'
+"use client";
+import React, { useState } from "react";
+import { set, z } from "zod";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { createAccount } from "@/lib/actions/users.action";
 import {
   Form,
   FormControl,
@@ -13,10 +14,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  FormDescription
+  FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-type FormType='login'|'register'
+type FormType = "login" | "register";
 
 const authFormSchema = (formType: FormType) => {
   return z.object({
@@ -27,34 +28,53 @@ const authFormSchema = (formType: FormType) => {
         : z.string().optional(),
   });
 };
-const AuthForm = ({type}:{type:FormType}) => {
-    const [isLoading, setIsLoading] = useState(false);
-      const [errorMessage, setErrorMessage] = useState("");
+const AuthForm = ({ type }: { type: FormType }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [accountId, setAccountId] = useState(null);
 
+  const formSchema = authFormSchema(type);
 
-    const formSchema = authFormSchema(type);
-
-    const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       fullName: "",
       email: "",
     },
-  })
-    function onSubmit(values: z.infer<typeof formSchema>) {
-          setIsLoading(true);
+  });
+  const onSubmit=async (values: z.infer<typeof formSchema>) =>{
+    setIsLoading(true);
+    try{
+ const user = await createAccount({
+      fullName: values.fullName || "",
+      email: values.email,
+    })
+     
+    setAccountId(user.accountId);
+    }
+    catch(error){
+      setErrorMessage("Failed to create account");
+      console.log(error);
+    } finally{
+      setIsLoading(false);
+    }
+   
+
     setErrorMessage("");
-    console.log(values)
+    console.log(values);
   }
   return (
     <>
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 auth-form">
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-8 auth-form"
+        >
           <h1 className="form-title">
             {type === "register" ? "Sign Up" : "Sign In"}
           </h1>
-          {type==="register" &&(
-             <FormField
+          {type === "register" && (
+            <FormField
               control={form.control}
               name="fullName"
               render={({ field }) => (
@@ -76,7 +96,7 @@ const AuthForm = ({type}:{type:FormType}) => {
               )}
             />
           )}
-        <FormField
+          <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
@@ -97,14 +117,13 @@ const AuthForm = ({type}:{type:FormType}) => {
               </FormItem>
             )}
           />
-        <Button
-           type="submit"
+          <Button
+            type="submit"
             className="form-submit-button"
-                        disabled={isLoading}
-
-        >
- {type === "login" ? "Sign In" : "Register"}
-  {isLoading && (
+            disabled={isLoading}
+          >
+            {type === "login" ? "Sign In" : "Register"}
+            {isLoading && (
               <Image
                 src="/assets/icons/loader.svg"
                 alt="loader"
@@ -113,9 +132,9 @@ const AuthForm = ({type}:{type:FormType}) => {
                 className="ml-2 animate-spin"
               />
             )}
-        </Button>
-                  {errorMessage && <p className="error-message">*{errorMessage}</p>}
- <div className="body-2 flex justify-center">
+          </Button>
+          {errorMessage && <p className="error-message">*{errorMessage}</p>}
+          <div className="body-2 flex justify-center">
             <p className="text-light-100">
               {type === "login"
                 ? "Don't have an account?"
@@ -129,10 +148,10 @@ const AuthForm = ({type}:{type:FormType}) => {
               {type === "login" ? "Sign Up" : "Sign In"}
             </Link>
           </div>
-      </form>
-    </Form>
+        </form>
+      </Form>
     </>
-  )
-}
+  );
+};
 
-export default AuthForm
+export default AuthForm;

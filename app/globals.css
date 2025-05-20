@@ -5,6 +5,20 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+
+ /* Define your animation variable */
+  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
+
+  /* Define the keyframes */
+  @keyframes caret-blink {
+    0%, 70%, 100% {
+      opacity: 1;
+    }
+    20%, 50% {
+      opacity: 0;
+    }
+  }
+
   /* Define colors as CSS variables */
   --color-brand: #FA7275;
   --color-brand-100: #EA6365;

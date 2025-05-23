@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { createAccount } from "@/lib/actions/users.action";
+import OtpModel from "../otp/OTPModel";
 import {
   Form,
   FormControl,
@@ -150,6 +151,10 @@ const AuthForm = ({ type }: { type: FormType }) => {
           </div>
         </form>
       </Form>
+
+         {accountId && (
+        <OtpModel email={form.getValues("email")} accountId={accountId} />
+      )}
     </>
   );
 };

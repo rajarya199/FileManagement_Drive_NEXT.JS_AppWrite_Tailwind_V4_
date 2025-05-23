@@ -10,6 +10,7 @@ import { createAdminClient,createSessionClient } from "../appwrite"
 import { appwriteConfig } from "@/lib/appwrite/config";
 import { Query, ID } from "node-appwrite";
 import { parseStringify } from "../utils";
+import { cookies } from "next/headers";
 
 const handleError = (error: unknown, message: string) => {
   console.log(error, message);

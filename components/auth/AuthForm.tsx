@@ -45,6 +45,8 @@ const AuthForm = ({ type }: { type: FormType }) => {
   });
   const onSubmit=async (values: z.infer<typeof formSchema>) =>{
     setIsLoading(true);
+    setErrorMessage("");
+
     try{
  const user = await createAccount({
       fullName: values.fullName || "",
@@ -61,8 +63,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
     }
    
 
-    setErrorMessage("");
-    console.log(values);
+   
   }
   return (
     <>
@@ -152,8 +153,8 @@ const AuthForm = ({ type }: { type: FormType }) => {
         </form>
       </Form>
 
-         {accountId && (
-        <OtpModel email={form.getValues("email")} accountId={accountId} />
+         {true && (
+        <OtpModel email={form.getValues("email")}  />
       )}
     </>
   );

@@ -20,10 +20,8 @@ import {
 } from "@/components/ui/input-otp"
 
 const OtpModel = ({
-  accountId,
   email,
 }: {
-  accountId: string;
   email: string;
 }) => {
   return (

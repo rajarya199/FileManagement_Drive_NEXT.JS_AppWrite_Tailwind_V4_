@@ -7,7 +7,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { createAccount } from "@/lib/actions/users.action";
-import OtpModel from "../otp/OTPModel";
 import {
   Form,
   FormControl,
@@ -19,7 +18,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 type FormType = "login" | "register";
-
+import OtpModel from "@/components/otp/OTPModel"
 const authFormSchema = (formType: FormType) => {
   return z.object({
     email: z.string().email(),
@@ -154,7 +153,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
       </Form>
 
          {true && (
-        <OtpModel email={form.getValues("email")}  />
+        <OtpModel email={form.getValues("email")}/>
       )}
     </>
   );

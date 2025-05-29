@@ -375,21 +375,28 @@
 }
 
 /* Sidebar Nav Item */
-/* @utility sidebar-nav-item {
+@utility sidebar-nav-item {
   @apply flex text-light-100 gap-4 rounded-xl lg:w-full justify-center lg:justify-start items-center h5 lg:px-[30px] h-[52px] lg:rounded-full;
-} */
+}
 
 /* Sidebar User Info */
-/* @utility sidebar-user-info {
+@utility sidebar-user-info {
   @apply mt-4 flex items-center justify-center gap-2 rounded-full bg-brand/10 p-1 text-light-100 lg:justify-start lg:p-3;
-} */
+}
 
 /* Sidebar User Avatar */
-/* @utility sidebar-user-avatar {
+@utility sidebar-user-avatar {
   @apply aspect-square w-10 rounded-full object-cover;
-} */
+}
 
 /* Shad Active */
-/* @utility shad-active {
+@utility shad-active {
   @apply bg-brand text-white shadow-drop-2;
-} */
+}
+
+  .nav-icon {
+    @apply w-6 filter invert opacity-25 ;
+  }
+  .nav-icon-active {
+    @apply invert-0 opacity-100 ;
+  }

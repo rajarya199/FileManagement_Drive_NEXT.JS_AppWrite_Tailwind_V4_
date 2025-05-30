@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { navItems } from "@/constants";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-
+import { avatarPlaceholderUrl } from '@/constants';
 const Sidebar = () => {
     const pathname = usePathname();
 
@@ -63,6 +63,20 @@ const Sidebar = () => {
         height={418}
         className="w-full"
       />
+
+            <div className="sidebar-user-info">
+                <Image
+          src={avatarPlaceholderUrl}
+          alt="Avatar"
+          width={44}
+          height={44}
+          className="sidebar-user-avatar"
+        />
+          <div className="hidden lg:block">
+          <p className="subtitle-2 capitalize">hhhh</p>
+          <p className="caption">yyyyy</p>
+        </div>
+</div>
       </aside>
   )
 }

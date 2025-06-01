@@ -11,6 +11,7 @@ import { appwriteConfig } from "@/lib/appwrite/config";
 import { Query, ID } from "node-appwrite";
 import { parseStringify } from "../utils";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 const handleError = (error: unknown, message: string) => {
   console.log(error, message);
@@ -116,4 +117,17 @@ export const getCurrentUser=async()=>{
 
    
 
+}
+
+export const signOutuser=async()=>{
+   const { account } = await createSessionClient();
+
+  try {
+    await account.deleteSession("current");
+    (await cookies()).delete("appwrite-session");
+  } catch (error) {
+    handleError(error, "Failed to sign out user");
+  } finally {
+    redirect("/sign-in");
+  }
 }

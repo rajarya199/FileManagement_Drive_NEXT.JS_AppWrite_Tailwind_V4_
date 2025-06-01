@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { createAccount } from "@/lib/actions/users.action";
+import { createAccount, signInUser } from "@/lib/actions/users.action";
 import {
   Form,
   FormControl,
@@ -47,11 +47,13 @@ const AuthForm = ({ type }: { type: FormType }) => {
     setErrorMessage("");
 
     try{
- const user = await createAccount({
+ const user = type==="register" ?
+ await createAccount({
       fullName: values.fullName || "",
       email: values.email,
     })
-     
+               : await signInUser({ email: values.email });
+
     setAccountId(user.accountId);
     }
     catch(error){

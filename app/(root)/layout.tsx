@@ -3,6 +3,7 @@ import Sidebar from '@/components/nav/Sidebar'
 import Header from '@/components/nav/Header'
 import { getCurrentUser } from '@/lib/actions/users.action'
 import { redirect } from 'next/navigation';
+import MobileNavigation from '@/components/nav/MobileNavigation';
 const Layout = async ({ children }: { children: React.ReactNode }) => {
   const currentUser=await getCurrentUser()
   if(!currentUser){
@@ -12,6 +13,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
     <main className='flex h-screen'>
         <Sidebar {...currentUser}/>
         <section className="flex h-full flex-1 flex-col" >
+          <MobileNavigation{...currentUser} />
         <Header/>
                 <div className="main-content">{children}</div>
 

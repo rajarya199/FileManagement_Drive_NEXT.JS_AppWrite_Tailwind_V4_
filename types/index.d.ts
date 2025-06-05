@@ -7,6 +7,16 @@ declare interface UploadFileProps {
 
 declare type FileType = "document" | "image" | "video" | "audio" | "other";
 
+declare interface ActionType {
+  label: string;
+  icon: string;
+  value: string;
+}
+
+declare interface SearchParamProps {
+  params?: Promise<SegmentParams>;
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
+}
 
 declare interface GetFilesProps {
   types: FileType[];

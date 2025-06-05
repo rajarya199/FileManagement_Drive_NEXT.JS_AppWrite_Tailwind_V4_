@@ -2,7 +2,7 @@
 import { appwriteConfig } from "@/lib/appwrite/config";
 
 import { createAdminClient, createSessionClient } from "@/lib/appwrite";
-import { Query, ID } from "node-appwrite";
+import { Query, ID, Models } from "node-appwrite";
 import { revalidatePath } from "next/cache"
 import { getCurrentUser } from "./users.action";
 import { InputFile } from "node-appwrite/file";
@@ -57,4 +57,34 @@ try{
 catch(error){
 handleError(error,"Failed to upload file");
 }
+}
+
+const createQueries=(currentUser: Models.Document)=>{
+    const queries = [
+    Query.or([
+      Query.equal("owner", [currentUser.$id]),
+      Query.contains("users", [currentUser.email]),
+    ]),
+  ];
+
+  return queries;
+}
+
+//get the files
+export const getFiles=async()=>{
+  const {databases}=await createAdminClient()
+  try{
+    const currentUser=await getCurrentUser();
+    if(!currentUser) throw new Error("User not found");
+    const queries=createQueries(currentUser)
+    const files=await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.filesCollectionId,
+     queries,
+    )
+    return parseStringify(files)
+  }
+  catch(error){
+    handleError(error, "Failed to get files");
+  }
 }

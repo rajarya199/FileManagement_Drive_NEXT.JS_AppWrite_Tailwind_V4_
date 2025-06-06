@@ -13,8 +13,9 @@ const Card = ({file}:{file:Models.Document}) => {
           type={file.type}
           extension={file.extension}
           url={file.url}
-          className="!size-20"
-          imageClassName="!size-11"
+          className="!size-18"
+           imageClassName="!size-full" 
+          // imageClassName="!size-11"
         />
          <div className="flex flex-col items-end justify-between">
             dropdown

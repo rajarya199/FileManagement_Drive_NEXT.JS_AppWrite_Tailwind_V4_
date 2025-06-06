@@ -462,3 +462,30 @@
    @utility file-card-details {
     @apply flex flex-col gap-2 text-light-100 
   }
+
+
+    /* ActionsDropdown */
+   @utility rename-input-field {
+    @apply body-2 shad-no-focus h-[52px] w-full rounded-full border px-4 shadow-drop-1 ;
+  }
+   @utility delete-confirmation {
+    @apply text-center text-light-100 ;
+  }
+   @utility delete-file-name {
+    @apply font-medium text-brand-100;
+  }
+    @utility modal-cancel-button {
+    @apply h-[52px] flex-1 rounded-full bg-white text-light-100 hover:bg-transparent ;
+  }
+   @utility modal-submit-button {
+    @apply primary-btn !mx-0 h-[52px] w-full flex-1 ;
+  }
+
+    /* Thumbnail */
+     @utility thumbnail {
+    @apply !flex-center !size-[50px] !min-w-[50px] !overflow-hidden !rounded-full !bg-brand/10 relative;
+  }
+     @utility thumbnail-image {
+    @apply !size-full  !object-fill object-center  absolute  !w-full !h-full;
+  
+  }

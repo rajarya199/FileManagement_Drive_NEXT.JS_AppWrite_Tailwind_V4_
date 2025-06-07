@@ -349,6 +349,19 @@
     @apply text-[40px] font-medium rounded-xl ring-brand shadow-drop-1 text-brand-100 justify-center flex border-2 border-light-300 size-12 md:size-16 gap-5 ;
   }
 
+@utility  shad-dropdown-item {
+    @apply cursor-pointer;
+  }
+
+  @utility shad-dialog {
+    @apply rounded-[26px] w-[90%] max-w-[400px] px-6 py-8;
+  }
+  @utility shad-chart-title {
+    @apply text-white;
+  }
+  @utility shad-select-item {
+    @apply cursor-pointer;
+  }
   @utility header {
     @apply hidden items-center justify-between gap-5 p-5 sm:flex lg:py-7 xl:gap-10
   }
@@ -480,6 +493,31 @@
    @utility modal-submit-button {
     @apply primary-btn !mx-0 h-[52px] w-full flex-1 ;
   }
+
+ /* ActionsModalContent */
+  @utility file-details-thumbnail {
+    @apply !mb-1 flex items-center gap-3 rounded-xl border border-light-200/40 bg-light-400/50 p-3 ;
+  }
+  @utility file-details-label {
+    @apply body-2 w-[30%] text-light-100 ;
+  }
+  @utility file-details-value {
+    @apply subtitle-2 flex-1 ;
+  }
+
+  @utility share-wrapper {
+    @apply !mt-2 space-y-2 ;
+  }
+  @utility share-input-field {
+    @apply body-2 shad-no-focus h-[52px] w-full rounded-full border px-4 shadow-drop-1 ;
+  }
+  @utility share-remove-user {
+    @apply rounded-full bg-transparent text-light-100 shadow-none hover:bg-transparent ;
+  }
+  @utility remove-icon {
+    @apply aspect-square rounded-full ;
+  }
+
 
     /* Thumbnail */
      @utility thumbnail {

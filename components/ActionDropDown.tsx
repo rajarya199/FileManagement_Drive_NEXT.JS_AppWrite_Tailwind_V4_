@@ -12,6 +12,11 @@ import {
   DialogTrigger,
   DialogFooter,
 } from "@/components/ui/dialog"
+import {
+  // deleteFile,
+  renameFile,
+  // updateFileUsers,
+} from "@/lib/actions/files.action"
 import Link from "next/link";
 import { constructDownloadUrl } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
@@ -43,7 +48,16 @@ const ActionDropDown = ({file}:{file:Models.Document}) => {
     //   setEmails([]);
   };
   const handleAction=async()=>{
-    
+    if(!action) return;
+    setIsLoading(true);
+    let success=false;
+    const actions={
+     rename: () =>
+        renameFile({ fileId: file.$id, name, extension: file.extension, path }),
+    }
+        success = await actions[action.value as keyof typeof actions]();
+    if (success) closeAllModals();
+    setIsLoading(false);
   }
   const renderDialogContent=()=>{
         if (!action) return null;

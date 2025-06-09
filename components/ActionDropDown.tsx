@@ -13,7 +13,7 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog"
 import {
-  // deleteFile,
+  deleteFile,
   renameFile,
   updateFileUsers,
 } from "@/lib/actions/files.action"
@@ -56,6 +56,8 @@ const ActionDropDown = ({file}:{file:Models.Document}) => {
      rename: () =>
         renameFile({ fileId: file.$id, name, extension: file.extension, path }),
       share: () => updateFileUsers({ fileId: file.$id, emails, path }),
+       delete: () =>
+        deleteFile({ fileId: file.$id, bucketFileId: file.bucketFileId, path }),
 
     }
 
@@ -86,6 +88,13 @@ return(
               onInputChange={setEmails}
               onRemove={handleRemoveUser}
             />
+          )}
+
+         {value === "delete" && (
+            <p >
+              Are you sure you want to delete{` `}
+              <span className="delete-file-name">{file.name}</span>?
+            </p>
           )}
           </DialogHeader>
           {["rename", "delete", "share"].includes(value) && (

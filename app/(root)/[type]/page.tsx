@@ -1,4 +1,5 @@
 import Card from '@/components/Card';
+import Sort from '@/components/Sort';
 import { getFiles } from '@/lib/actions/files.action';
 import { getFileTypesParams } from '@/lib/utils';
 import { Models } from 'node-appwrite';
@@ -24,7 +25,7 @@ const files=await getFiles({types,searchText,sort})
            <div className="sort-container">
             <p className="body-1 hidden text-light-200 sm:block">Sort by:</p>
 
-            sort
+            <Sort/>
           </div>
 
     </div>

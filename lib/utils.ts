@@ -180,3 +180,26 @@ export const formatDateTime = (isoString: string | null | undefined) => {
 
   return `${time}, ${day} ${month}`;
 };
+
+
+
+export const calculatePercentage = (sizeInBytes: number) => {
+  const totalSizeInBytes = 2 * 1024 * 1024 * 1024; // 2GB in bytes
+  const percentage = (sizeInBytes / totalSizeInBytes) * 100;
+  return Number(percentage.toFixed(2));
+};
+
+export const getFileTypesParams = (type: string) => {
+  switch (type) {
+    case "documents":
+      return ["document"];
+    case "images":
+      return ["image"];
+    case "media":
+      return ["video", "audio"];
+    case "others":
+      return ["other"];
+    default:
+      return ["document"];
+  }
+};

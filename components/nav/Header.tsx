@@ -3,11 +3,12 @@ import { Button } from '../ui/button'
 import Image from 'next/image'
 import { signOutuser } from '@/lib/actions/users.action'
 import FileUploader from '../upload/FileUploader'
+import Search from '@/components/Search'
 const Header = ({userId,accountId}:{  userId: string;
   accountId: string}) => {
   return (
     <header className='header'>
-        search
+      <Search/>
 <div className='header-wrapper'>
           <FileUploader ownerId={userId} accountId={accountId} />
 

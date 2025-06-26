@@ -17,3 +17,12 @@
 
 ## 🌟 Overview
 The **File Drive System** is a full-stack web application built with **Next.js** and  **AppWrite** and **TypeScript**, is web application designed for seamless **File Mangement** and **user authentication**  enabling users to upload, store and manage differnt types of Files. The system includes **File managements** ,**Delete File**,**Rename,File** ,**Share file with others User**,**OTP login**
+
+## <a name="tech-stack">⚙️ Tech Stack</a>
+
+- React 19
+- Next.js 15
+- Appwrite
+- TailwindCSS V4
+- ShadCN
+- TypeScript

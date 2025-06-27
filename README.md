@@ -81,3 +81,6 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 The application is deployed and accessible online at:  
 🔗 **Live Demo:** [Click Here](https://filemanagementdrive.vercel.app/)  
 
+## 📧 Contact
+For inquiries, reach out to 📩 `aryalrajan078@gmail.com` or open an **issue** in the repository.
+

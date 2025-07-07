@@ -18,7 +18,9 @@ const Sidebar = ({fullName,avatar,email}:Props) => {
     <aside className='sidebar remove-scrollbar'>
           <Link href="/">
         <Image
-          src="/assets/icons/logo-full-brand.svg"
+                  // src="/assets/icons/logo-full-brand.svg"
+
+          src="/assets/icons/filedrivelogo1.png"
           alt="logo"
           width={160}
           height={50}
